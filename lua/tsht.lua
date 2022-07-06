@@ -102,6 +102,9 @@ function M.jump_nodes()
             key = string.lower(key)
             local node = hints[key]
             if node then
+                -- add current pos to jump list
+                -- https://stackoverflow.com/questions/19195160/push-a-location-to-the-jumplist#comment28478616_19197287
+                vim.cmd(":k '")
                 local start_row, start_col, end_row, end_col = node:range()
                 if not upper_case then
                     api.nvim_win_set_cursor(0, { start_row + 1, start_col })
