@@ -51,6 +51,9 @@ end
 function M.jump_nodes()
     api.nvim_buf_clear_namespace(0, ns, 0, -1)
     local get_query = require("vim.treesitter.query").get_query
+    if vim.version().minor >= 9 then
+      get_query = require("vim.treesitter.query").get
+    end
     local parsers = require('nvim-treesitter.parsers')
     local lang = parsers.get_buf_lang(0)
     local query = get_query(lang, 'locals')
@@ -125,6 +128,9 @@ end
 function M.nodes()
     api.nvim_buf_clear_namespace(0, ns, 0, -1)
     local get_query = require("vim.treesitter.query").get_query
+    if vim.version().minor >= 9 then
+      get_query = require("vim.treesitter.query").get
+    end
     local parsers = require('nvim-treesitter.parsers')
     local lang = parsers.get_buf_lang(0)
     local query = get_query(lang, 'locals')
